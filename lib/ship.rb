@@ -8,7 +8,7 @@ class Ship
   end
 
   def sunk?
-    return false if health >0
+    return false if health > 0
     true
     # if @health > 0
     #   false
