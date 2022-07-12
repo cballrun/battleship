@@ -21,7 +21,8 @@ class Ship
     @health -= 1
   end
 
-
+ #this method needs to be fixed
+ #it returns 2 in the interaction pattern
 
 
 
