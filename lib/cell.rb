@@ -24,4 +24,20 @@ class Cell
       self.ship.hit
     end
   end
+  def render
+    if self.empty? == true && self.fired_upon? == true
+      p "M"
+        # if self.empty? == false
+          #   if self.ship.sunk? == true
+          #     p "X"
+          #     # elsif self.fired_upon? == true
+          #     #   p "H"
+          #   end 
+    
+    
+ 
+    else 
+      p "."
+    end
+  end
 end
