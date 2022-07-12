@@ -4,7 +4,7 @@ require './lib/cell'
 RSpec.describe Cell do
   before :each do 
     @cell = Cell.new("B4")
-    # @cruiser = Ship.new("Cruiser", 3)
+    @cruiser = Ship.new("Cruiser", 3)
   end
   it 'exists' do 
     expect(@cell).to be_a(Cell)
@@ -18,9 +18,24 @@ RSpec.describe Cell do
   it 'has empty?' do
     expect(@cell.empty?).to eq(true)
   end
-  # xit 'creates and places ship' do
-  #   expect(@cell.place_ship(@cruiser)).to be_a(Ship)
-  #   expect(@cell.ship).to eq(@cruiser)
-  #   expect(@cell.empty?).to eq(false)
-  # end
+  it 'creates and places ship' do
+    expect(@cell.place_ship(@cruiser)).to be_a(Ship)
+    expect(@cell.ship).to eq(@cruiser)
+    expect(@cell.empty?).to eq(false)
+  end
+  it 'does fired_upon?' do 
+    expect(@cell.fired_upon?).to eq(false)
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.fired_upon?).to eq(true)
+  end
+  it 'reduces ship health on hit' do 
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.ship.health).to eq(2)
+    @cell.fire_upon
+    expect(@cell.ship.health).to eq(1)
+    @cell.fire_upon
+    expect(@cell.ship.sunk?).to eq(true)
+  end
 end
