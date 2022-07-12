@@ -38,4 +38,9 @@ RSpec.describe Cell do
     @cell.fire_upon
     expect(@cell.ship.sunk?).to eq(true)
   end
+  it 'fire upon works without ship present' do
+    cell = Cell.new("B4")
+    cell.fire_upon
+    expect(cell.fired_upon?).to eq(true)
+  end
 end
