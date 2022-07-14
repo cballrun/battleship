@@ -1,10 +1,13 @@
 require './lib/board'
 require './lib/cell'
+require './lib/ship'
 
 RSpec.describe Board do
   
   before :each do
     @board = Board.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)   
   end
 
   it 'exists' do 
