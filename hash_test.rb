@@ -32,15 +32,39 @@ require './lib/cell'
 
 
 
-arr = ["A1", "A2", "A4"]
-
-arr_p = (arr).each_cons(2).to_a
 
 
 
-arr_p
+["A1", "C1"]
 
-(arr_p[1][0]..arr_p[1][1]).to_a.length > 2
+["A3", "A2", "A1"]
+
+["C1", "B1"]
+
+coordinate = ["A1", "A2", "A4"]
+
+coordinate_pair = (coordinate).each_cons(2).to_a
+
+p coordinate_pair
+
+p coordinate_pair[0][1]
+
+p coordinate_pair[0][1][1]
+
+
+# X coordinate (right to left from array)
+p ("#{coordinate_pair[1][1][1]}".ord) - ("#{coordinate_pair[1][0][1]}".ord) != 1 
+
+# Y coordinate (right to left from array)
+p ("#{coordinate_pair[1][1][0]}".ord) - ("#{coordinate_pair[1][0][0]}".ord) != 1
+
+
+# p "C".ord
+
+# p "B".ord
+
+
+# (arr_p[1][0]..arr_p[1][1]).to_a.length > 2
 
 
 # def test(coordinate)
@@ -58,15 +82,12 @@ arr_p
 # ("A2".."A4").to_a
 
 
-
-
-
 grid = {}
 
 grid_coordinates = ('A1'..'A4').to_a + ('B1'..'B4').to_a + ('C1'..'C4').to_a + ('D1'..'D4').to_a
 
 grid_coordinates.each {|coordinate| grid[coordinate] = Cell.new(coordinate)}
-require 'pry'; binding.pry
-p grid.values
+
+
 
 # # %w[foo, bar] = ["foo", "bar"]
