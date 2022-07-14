@@ -16,11 +16,15 @@ class Board
   end
 
   def valid_placement?(ship, coordinate_array)
-    if ship.length != coordinary_array.length
-      false
-    elsif coordinate_array  
-
-    end
+    return false if ship.length != coordinate_array.length
+      
+    
+    
+    
+      
+    
+      
+    
   end
 end
 

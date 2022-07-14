@@ -30,13 +30,14 @@ RSpec.describe Board do
 
   it 'can tell if a ship placement is valid' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
-    expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"]))
+    expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
   end 
-  it 'determines if ship placement is consecutive' do
+  xit 'determines if ship placement is consecutive' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
     expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
+    # expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
   end
 end
 
