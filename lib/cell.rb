@@ -23,19 +23,19 @@ class Cell
 
   def fire_upon
     @taken_fire = true 
-    if self.empty? == false
-      self.ship.hit
+    if empty? == false
+      @ship.hit
     end
   end
   
   def render(variable = nil)
-    if self.empty? == true && self.fired_upon? == true
+    if empty? == true && fired_upon? == true
       p "M"
     elsif variable == true
       p "S"
-    elsif self.empty? == false && self.ship.sunk? == true
+    elsif empty? == false && ship.sunk? == true
       p "X"
-    elsif self.empty? == false && self.fired_upon? == true
+    elsif empty? == false && fired_upon? == true
       p "H"
     else
       p "."
