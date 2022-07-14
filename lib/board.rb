@@ -14,5 +14,14 @@ class Board
     return true if cells.keys.include? coordinate  
     false 
   end
+
+  def valid_placement?(ship, coordinate_array)
+    if ship.length != coordinary_array.length
+      false
+    elsif coordinate_array  
+
+    end
+  
+  end
 end
 
