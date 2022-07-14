@@ -21,7 +21,6 @@ class Board
     elsif coordinate_array  
 
     end
-  
   end
 end
 
