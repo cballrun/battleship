@@ -29,4 +29,8 @@ class Board
       true
     end
   end
+
+  def place(ship, coordinate)
+
+  end
 end
