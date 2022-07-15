@@ -3,14 +3,14 @@ require './lib/cell'
 require './lib/ship'
 
 RSpec.describe Board do
-  
+
   before :each do
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)   
+    @submarine = Ship.new("Submarine", 2)
   end
 
-  it 'exists' do 
+  it 'exists' do
     expect(@board).to be_a(Board)
   end
 
@@ -28,16 +28,23 @@ RSpec.describe Board do
     expect(@board.valid_coordinate?("A22")).to eq(false)
   end
 
-  it 'can tell if a ship placement is valid' do
+  it 'determines if ship length is equal to coordinate length' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
-  end 
-  xit 'determines if ship placement is consecutive' do
+  end
+  it 'determines if ship placement is consecutive' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
     expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
-    # expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
+  end
+  it 'determines if ship placement is diagonal' do
+    expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
+  end
+  it 'determines if ship placement is vaid' do
+    expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
+    expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
   end
 end
 
