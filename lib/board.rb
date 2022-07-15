@@ -31,7 +31,11 @@ class Board
   end
 
   def place(ship, coordinate)
-    ship_coordinates = coordinate.map { |coord| @cells[coord] }
+    ship_coordinates = []
+    coordinate.map do |coord|
+      require 'pry'; binding.pry
+      ship_coordinates << @cells[coord]
+    end
     ship_coordinates.map { |coord| coord.place_ship(ship) }
   end
 end
