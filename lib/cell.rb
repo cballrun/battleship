@@ -1,9 +1,9 @@
-class Cell  
+class Cell
   attr_reader :coordinate,
-              :ship          
+              :ship
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = ship  
+    @ship = ship
     @taken_fire = false
   end
 
@@ -22,12 +22,12 @@ class Cell
   end
 
   def fire_upon
-    @taken_fire = true 
+    @taken_fire = true
     if empty? == false
       @ship.hit
     end
   end
-  
+
   def render(variable = nil)
     if empty? == true && fired_upon? == true
       p "M"
