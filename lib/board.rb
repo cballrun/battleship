@@ -1,13 +1,13 @@
 class Board
-
+  attr_reader :cells
   def initialize
+    @cells = {}
   end
 
   def cells
-    grid = {}
     grid_coordinates = ('A1'..'A4').to_a + ('B1'..'B4').to_a + ('C1'..'C4').to_a + ('D1'..'D4').to_a
-    grid_coordinates.each {|coordinate| grid[coordinate] = Cell.new(coordinate)}
-    grid
+    grid_coordinates.each { |coordinate| @cells[coordinate] = Cell.new(coordinate) }
+    @cells
   end
 
   def valid_coordinate?(coordinate)
@@ -31,6 +31,7 @@ class Board
   end
 
   def place(ship, coordinate)
-
+    ship_coordinates = coordinate.map { |coord| @cells[coord] }
+    ship_coordinates.map { |coord| coord.place_ship(ship) }
   end
 end
