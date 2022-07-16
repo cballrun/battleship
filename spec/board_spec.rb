@@ -32,31 +32,40 @@ RSpec.describe Board do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
   end
+
   it 'determines if ship placement is consecutive' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
     expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
   end
+
   it 'determines if ship placement is diagonal' do
     expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to eq(false)
   end
-  it 'determines if ship placement is vaid' do
+
+  it 'determines if ship placement is valid' do
     expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
     expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
   end
-  it "can place ships" do
-    @board.place(@cruiser, ["A1", "A2", "A3"])
 
+  it 'can place ships' do
+    @board.place(@cruiser, ["A1", "A2", "A3"])
     cell_1 = @board.cells["A1"]
     cell_2 = @board.cells["A2"]
     cell_3 = @board.cells["A3"]
-
     expect(cell_1.ship).to eq(@cruiser)
     expect(cell_2.ship).to eq(@cruiser)
     expect(cell_3.ship).to eq(@cruiser)
-    expect(cell_3.ship).to eq(cell_2.ship)
+    expect(cell_1.ship).to eq(cell_3.ship)
+  end
+
+  it 'determines if ships overlap' do
+    pending "fix this please"
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
+    expect(@board.valid_placement?(@submarine, ["B1", "C1"])).to eq(true)
   end
 end
 
