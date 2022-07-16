@@ -3,22 +3,20 @@ class Cell
               :ship
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = ship
+    @ship = nil
     @taken_fire = false
   end
 
   def empty?
-    return true if @ship == nil
-    false
+    @ship.nil?
   end
 
-  def place_ship(ship_object)
-    @ship = ship_object
+  def place_ship(ship)
+    @ship = ship
   end
 
   def fired_upon?
-    fired_upon_logic = true
-    @taken_fire && fired_upon_logic
+    @taken_fire
   end
 
   def fire_upon
