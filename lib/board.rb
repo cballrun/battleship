@@ -7,42 +7,64 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    return true if cells.keys.include? coordinate
-    false
+    @cells.keys.include? coordinate
   end
 
   def valid_placement?(ship, coordinates)
-    # Return false if any of the coordinates are not empty
-    return false if coordinates.any? { |coordinate| !@cells[coord].empty? }
+    return false if coordinates.any? { |coordinate| !@cells[coordinate].empty? }
     return false unless ship.length == coordinates.length
-    # [A1, A2, A3] [A1, B1] [A1, B1, C1]
-    # For each of the coordinates x# y*
-    #      x = y (the row is the same) and # = * +1 (sequential column)
-          # = * (the column is the same) and x = y +1 (sequential row)
-    # row_is_same?(coordinates) coordinates.all? { |coordinate| coordinate[0] == coordinates[0][0] }
-    # column_is_same?(coordinates) coordinates.all? { |coordinate| coordinate[1] == coordinates[0][1] }
-    # column_is_sequential?(coordinates) coordinates.each_cons(2) { |coordinate, coordinate1| coordinate[1] == coordinate1[1] +1 }
-    # row_is_sequential?(coordinates)
-    if row_is_same? && column_is_sequential?
+    x_coordinate = coordinates.map { |coordinate| coordinate[1] }
+    y_coordinate = coordinates.map { |coordinate| coordinate[0] }
+    return false if y_coordinate.uniq.length == coordinates.length && x_coordinate.uniq.length == coordinates.length
+    if row_is_same?(coordinates) && column_is_sequential?(coordinates)
       true
-    elsif column_is_same? && row_is_sequential?
+    elsif column_is_same?(coordinates) && row_is_sequential?(coordinates)
       true
-    end
-
-    x_coordinate = coordinates.map { |coordinate| coord[1] }
-    y_coordinate = coordinates.map { |coordinate| coord[0] }
-    if y_coordinate.uniq.length == coordinates.length && x_coordinate.uniq.length == coordinates.length
-      false
-    elsif ((y_coordinate.minmax[0])..(y_coordinate.minmax[1])).to_a.length > ship.length || ((x_coordinate.minmax[0])..(x_coordinate.minmax[1])).to_a.length > ship.length == true
-      false
-    elsif (x_coordinate[-1].ord < x_coordinate[-2].ord || x_coordinate[0].ord > x_coordinate[1].ord) || (y_coordinate[-1].ord < y_coordinate[-2].ord || y_coordinate[0].ord > y_coordinate[1].ord) == true
-      false
     else
-      true
+      false
     end
   end
 
   def place(ship, coordinate)
     coordinate.each { |coord| @cells[coord].place_ship(ship) }
   end
+
+  def row_is_same?(coordinates)
+    coordinates.all? { |coordinate| coordinate[0] == coordinates[0][0] }
+  end
+
+  def column_is_same?(coordinates)
+    coordinates.all? { |coordinate| coordinate[1] == coordinates[0][1]}
+  end
+
+  def row_is_sequential?(coordinates)
+    coordinate_rows = coordinates.map { |coordinate| coordinate[0] }
+    coordinate_rows.each_cons(2).map do |row1, row2|
+      row1.next == row2
+    end.all?
+  end
+
+  def column_is_sequential?(coordinates) #returns true or false
+    coordinate_columns = coordinates.map { |coordinate| coordinate[1] }
+    coordinate_columns.each_cons(2).map do |column1, column2|
+      column1.next == column2
+    end.all?
+  end
+
+  def render(display = false)
+      "  1 2 3 4 \n"
+      "A #{@cells["A1"].render(display)} #{@cells["A2"].render(display)} #{@cells["A3"].render(display)} #{@cells["A4"].render(display)}\n"
+      "B #{@cells["B1"].render(display)} #{@cells["B2"].render(display)} #{@cells["B3"].render(display)} #{@cells["B4"].render(display)}\n"
+      "C #{@cells["C1"].render(display)} #{@cells["C2"].render(display)} #{@cells["C3"].render(display)} #{@cells["C4"].render(display)}\n"
+      "D #{@cells["D1"].render(display)} #{@cells["D2"].render(display)} #{@cells["D3"].render(display)} #{@cells["D4"].render(display)}\n"
+  end
+
+  # def row_renderer(row, display)
+  #   row_coordinates = @cells.keys.select { |key| key.include? row }
+  #   array = []
+  #   row_coordinates.each do |coordinate|
+  #     array << @cells[coordinate].render(display)
+  #     # require 'pry'; binding.pry
+  #   end
+  # end
 end

@@ -26,17 +26,17 @@ class Cell
     end
   end
 
-  def render(variable = nil)
+  def render(display = false)
     if empty? == true && fired_upon? == true
-      p "M"
-    elsif variable == true
-      p "S"
+      "M"
+    elsif display == true && empty? == false
+      "S"
     elsif empty? == false && ship.sunk? == true
-      p "X"
+      "X"
     elsif empty? == false && fired_upon? == true
-      p "H"
+      "H"
     else
-      p "."
+      "."
     end
   end
 end

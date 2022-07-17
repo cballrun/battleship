@@ -12,6 +12,7 @@ RSpec.describe Board do
 
   it 'exists' do
     expect(@board).to be_a(Board)
+    require 'pry'; binding.pry
   end
 
   it 'creates cells hash' do
@@ -62,10 +63,15 @@ RSpec.describe Board do
   end
 
   it 'determines if ships overlap' do
-    pending "fix this please"
     @board.place(@cruiser, ["A1", "A2", "A3"])
     expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
     expect(@board.valid_placement?(@submarine, ["B1", "C1"])).to eq(true)
+  end
+
+  it 'can render board' do
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+    expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
   end
 end
 
