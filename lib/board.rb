@@ -52,12 +52,15 @@ class Board
   end
 
   def render(display = false)
-      "  1 2 3 4 \n"
-      "A #{@cells["A1"].render(display)} #{@cells["A2"].render(display)} #{@cells["A3"].render(display)} #{@cells["A4"].render(display)}\n"
-      "B #{@cells["B1"].render(display)} #{@cells["B2"].render(display)} #{@cells["B3"].render(display)} #{@cells["B4"].render(display)}\n"
-      "C #{@cells["C1"].render(display)} #{@cells["C2"].render(display)} #{@cells["C3"].render(display)} #{@cells["C4"].render(display)}\n"
-      "D #{@cells["D1"].render(display)} #{@cells["D2"].render(display)} #{@cells["D3"].render(display)} #{@cells["D4"].render(display)}\n"
-  end
+    
+      game_board = ("  1 2 3 4 \n")
+      game_board +=  "A" + " " +  @cells["A1"].render(display) + " " + @cells["A2"].render(display) + " " + @cells["A3"].render(display) + " " + @cells["A4"].render(display) + " \n" + 
+                     "B" + " " +  @cells["B1"].render(display) + " " + @cells["B2"].render(display) + " " + @cells["B3"].render(display) + " " + @cells["B4"].render(display) + " \n" + 
+                     "C" + " " +  @cells["C1"].render(display) + " " + @cells["C2"].render(display) + " " + @cells["C3"].render(display) + " " + @cells["C4"].render(display) + " \n" + 
+                     "D" + " " +  @cells["D1"].render(display) + " " + @cells["D2"].render(display) + " " + @cells["D3"].render(display) + " " + @cells["D4"].render(display) + " \n"
+      game_board
+    end
+  
 
   # def row_renderer(row, display)
   #   row_coordinates = @cells.keys.select { |key| key.include? row }
