@@ -12,7 +12,6 @@ RSpec.describe Board do
 
   it 'exists' do
     expect(@board).to be_a(Board)
-    require 'pry'; binding.pry
   end
 
   it 'creates cells hash' do
