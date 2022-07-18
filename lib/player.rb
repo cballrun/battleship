@@ -1,8 +1,8 @@
 class Player
   attr_reader :board,
               :ships
-  def initialize(board)
-    @board = board
+  def initialize
+    @board = Board.new
     @ships = []
   end
 
@@ -12,14 +12,16 @@ class Player
 
   def player_greeting
     puts
-    puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+    puts "><^><^><^><^><^><^><^>^<^><^><^><^><^>"
+    puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
     puts
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
     puts "The Cruiser is three squares long and"
     puts "the Submarine is two squares long."
     puts
-    puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+    puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
+    puts "><^><^><^><^><^><^><^>^<^><^><^><^><^>"
     puts
     puts "This is your BOARD:"
     puts
@@ -34,17 +36,17 @@ class Player
     puts "Cruiser placement:"
     puts "Select your first coordinate:"
     puts
-    first_coordinate = gets.chomp.upcase!
+    first_coordinate = gets.chomp
     puts
     puts "Select your second coordinate:"
     puts
-    second_coordinate = gets.chomp.upcase!
+    second_coordinate = gets.chomp
     puts
     puts "Select your final coordinate:"
     puts
-    third_coordinate = gets.chomp.upcase!
+    third_coordinate = gets.chomp
     puts
-    puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+    puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
     puts
     player_input = [first_coordinate, second_coordinate, third_coordinate]
     if @board.valid_placement?(cruiser, player_input) == false
@@ -56,7 +58,8 @@ class Player
       puts @board.render(true)
       puts
       puts "Your Cruiser is placed."
-      puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+      puts
+      puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
     end
   end
 
@@ -68,24 +71,26 @@ class Player
     puts "Submarine placement:"
     puts "Select your first coordinate:"
     puts
-    first_coordinate = gets.chomp.upcase!
+    first_coordinate = gets.chomp
     puts
     puts "Select your second coordinate:"
     puts
-    second_coordinate = gets.chomp.upcase!
-    puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+    second_coordinate = gets.chomp
+    puts
+    puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
     puts
     player_input = [first_coordinate, second_coordinate]
-    if @board.valid_placement?(@submarine, player_input) == false
+    if @board.valid_placement?(submarine, player_input) == false
       puts "Those coordinates are not valid!"
       puts "Try again..."
       player_submarine_placement_loop
     else
-      @board.place(@submarine, player_input)
+      @board.place(submarine, player_input)
       puts @board.render(true)
       puts
       puts "Your Submarine is placed."
-      puts "<^><^><^><^><^><^><^>^<^><^><^><^><^><^>"
+      puts
+      puts "^><^><^><^><^><^><^>^<^><^><^><^><^><^"
     end
   end
 
