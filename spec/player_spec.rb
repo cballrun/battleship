@@ -6,6 +6,7 @@ require './lib/player'
 RSpec.describe Player do
   before :each do
     @board = Board.new
-    @player = Player.new()
+    # @player = Player.new()
+    # @computer = Computer.new()
   end
 end

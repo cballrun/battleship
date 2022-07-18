@@ -28,6 +28,7 @@ class Board
   end
 
   def place(ship, coordinates)
+    return false if valid_placement?(ship, coordinates) == false
     coordinates.each { |coord| @cells[coord].place_ship(ship) }
   end
 
@@ -54,7 +55,7 @@ class Board
   end
 
   def render(display = false)
-    "  1 2 3 4 \n" +
+    "  1  2  3  4 \n" +
     "A" + " " +  @cells["A1"].render(display) + " " + @cells["A2"].render(display) + " " + @cells["A3"].render(display) + " " + @cells["A4"].render(display) + " \n" +
     "B" + " " +  @cells["B1"].render(display) + " " + @cells["B2"].render(display) + " " + @cells["B3"].render(display) + " " + @cells["B4"].render(display) + " \n" +
     "C" + " " +  @cells["C1"].render(display) + " " + @cells["C2"].render(display) + " " + @cells["C3"].render(display) + " " + @cells["C4"].render(display) + " \n" +
