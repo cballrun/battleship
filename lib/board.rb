@@ -2,16 +2,17 @@ class Board
   attr_reader :cells
   def initialize
     @cells = {}
-    @game_board = ()
+    # @game_board = ()
     grid_coordinates = ('A1'..'A4').to_a + ('B1'..'B4').to_a + ('C1'..'C4').to_a + ('D1'..'D4').to_a
     grid_coordinates.each { |coordinate| @cells[coordinate] = Cell.new(coordinate) }
   end
 
-  def valid_coordinate?(coordinate)
-    @cells.keys.include? coordinate
+  def valid_coordinate?(coordinates)
+    @cells.keys.include? coordinates
   end
 
   def valid_placement?(ship, coordinates)
+    return false if coordinates.any? { |coordinate| valid_coordinate?(coordinate) == false }
     return false if coordinates.any? { |coordinate| !@cells[coordinate].empty? }
     return false unless ship.length == coordinates.length
     x_coordinate = coordinates.map { |coordinate| coordinate[1] }
@@ -26,8 +27,8 @@ class Board
     end
   end
 
-  def place(ship, coordinate)
-    coordinate.each { |coord| @cells[coord].place_ship(ship) }
+  def place(ship, coordinates)
+    coordinates.each { |coord| @cells[coord].place_ship(ship) }
   end
 
   def row_is_same?(coordinates)
@@ -53,14 +54,12 @@ class Board
   end
 
   def render(display = false)
-      @game_board = ("  1 2 3 4 \n")
-      @game_board +=  "A" + " " +  @cells["A1"].render(display) + " " + @cells["A2"].render(display) + " " + @cells["A3"].render(display) + " " + @cells["A4"].render(display) + " \n" +
-                     "B" + " " +  @cells["B1"].render(display) + " " + @cells["B2"].render(display) + " " + @cells["B3"].render(display) + " " + @cells["B4"].render(display) + " \n" +
-                     "C" + " " +  @cells["C1"].render(display) + " " + @cells["C2"].render(display) + " " + @cells["C3"].render(display) + " " + @cells["C4"].render(display) + " \n" +
-                     "D" + " " +  @cells["D1"].render(display) + " " + @cells["D2"].render(display) + " " + @cells["D3"].render(display) + " " + @cells["D4"].render(display) + " \n"
-      require 'pry'; binding.pry
-      @game_board
-    end
+    "  1 2 3 4 \n" +
+    "A" + " " +  @cells["A1"].render(display) + " " + @cells["A2"].render(display) + " " + @cells["A3"].render(display) + " " + @cells["A4"].render(display) + " \n" +
+    "B" + " " +  @cells["B1"].render(display) + " " + @cells["B2"].render(display) + " " + @cells["B3"].render(display) + " " + @cells["B4"].render(display) + " \n" +
+    "C" + " " +  @cells["C1"].render(display) + " " + @cells["C2"].render(display) + " " + @cells["C3"].render(display) + " " + @cells["C4"].render(display) + " \n" +
+    "D" + " " +  @cells["D1"].render(display) + " " + @cells["D2"].render(display) + " " + @cells["D3"].render(display) + " " + @cells["D4"].render(display) + " \n"
+  end
 
   # def row_renderer(row, display)
   #   row_coordinates = @cells.keys.select { |key| key.include? row }
