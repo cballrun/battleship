@@ -44,17 +44,27 @@ class Computer
   end
 
   
-
-  
+    def cpu_fire
+      pboard = Board.new
       
-       
+      x = ["1", "2", "3", "4"]
+      y = ["A", "B", "C", "D"]
+      coord_to_fire_upon = y.sample + x.sample
+      
+      if pboard.cells[coord_to_fire_upon].taken_fire == false
+         pboard.cells[coord_to_fire_upon].fire_upon
+      else
+        cpu_fire
+      
+    end
+
+      
+      
+    
 
     
 
 
   
-
-
-
 
 end
