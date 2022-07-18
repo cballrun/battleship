@@ -30,15 +30,15 @@ class Cell
 
   def render(display = false)
     if empty? == true && fired_upon? == true
-      "M"
+      "💢"
     elsif display == true && empty? == false
-      "S"
+      "🚢"
     elsif empty? == false && ship.sunk? == true
-      "X"
+      "🛟"
     elsif empty? == false && fired_upon? == true
-      "H"
+      "💥"
     else
-      "."
+      "🌊"
     end
   end
 end
