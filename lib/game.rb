@@ -10,16 +10,16 @@ class Game
     @computer.cruiser_coord_generator
     @computer.sub_coord_generator
     puts
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
+    puts "🌊🌊🌊🌊🌊🚢🚢🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
+    puts "🌊🌊🚢🚢🌊🌊🌊🌊🌊🌊🌊🌊🚢🚢🌊🌊🌊🌊🌊🌊"
     puts
     puts "Your opponent has laid out their ships."
     puts "You now need to lay out your two ships."
     puts "The Cruiser is three squares long and"
     puts "the Submarine is two squares long."
     puts
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
+    puts "🌊🌊🌊🚢🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🚢🚢🚢🌊🌊"
+    puts "🌊🌊🌊🌊🌊🌊🚢🚢🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
     puts
     cruiser_placement_prompt
   end
@@ -42,8 +42,6 @@ class Game
     puts
     third_coordinate = gets.chomp
     puts
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
-    puts
     if @player.player_cruiser_placement(first_coordinate, second_coordinate, third_coordinate) == false
       puts "Those coordinates are not valid!"
       puts "Try again..."
@@ -53,8 +51,6 @@ class Game
       puts @player.board.render(true)
       puts
       puts "Your Cruiser is placed."
-      puts
-      puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
       puts
       submarine_placement_prompt
     end
@@ -70,8 +66,6 @@ class Game
     puts
     second_coordinate = gets.chomp
     puts
-    puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
-    puts
     if @player.player_submarine_placement(first_coordinate, second_coordinate) == false
       puts "Those coordinates are not valid!"
       puts "Try again..."
@@ -81,8 +75,6 @@ class Game
       puts @player.board.render(true)
       puts
       puts "Your Submarine is placed."
-      puts
-      puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
       puts
       turn
     end
@@ -122,7 +114,6 @@ class Game
   end
 
   def turn
-    puts
     puts "={ COMPUTER BOARD }="
     puts
     puts @computer.cpu_board.render
@@ -153,10 +144,14 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    puts "Enter a coordinate to fire upon, or press q to leave the game."
+    puts "Enter a coordinate to fire upon:"
+    puts
+    puts "...or press q to leave the game."
     puts
     player_fire
-    if @computer.defeat? || @player.defeat? == true
+    if @computer.defeat? == true
+      game_over
+    elsif @player.defeat? == true
       game_over
     else
       turn
@@ -171,9 +166,13 @@ class Game
          @player.board.cells[coord_to_fire_upon].fire_upon
         puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
         if @player.board.cells[coord_to_fire_upon].empty? == true
+            puts
             puts "It's a MISS!"
+            puts
         else
+            puts
             puts "It's a HIT!"
+            puts
         end
       else
         cpu_fire
@@ -182,7 +181,7 @@ class Game
 
   def player_fire
     coord_to_fire_upon = gets.chomp
-    
+
     if coord_to_fire_upon == "q"
       puts "See you next time..."
       exit!
@@ -196,24 +195,32 @@ class Game
       @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
       puts "You fired on coordinate #{coord_to_fire_upon}"
         if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
+          puts
           puts "It's a MISS!"
-        else
+          puts
+      else
+          puts
           puts "It's a HIT!"
+          puts
         end
     else
+      puts
       puts "You've already shot at that space. Try again."
+      puts
       player_fire
     end
   end
 
   def game_over
     if @computer.defeat? == true
+      puts
       puts "You sunk my battleship!"
+      puts
     else
+      puts
       puts "Better luck next time..."
+      puts
     end
   end
-
-
 end
 
