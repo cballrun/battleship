@@ -132,13 +132,13 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    puts "Your opponent fires on coordinate #{cpu_fire}!"
-    puts
-    if @player.board.cells[cpu_fire].empty? == true
-      puts "It's a MISS!"
-    else
-      puts "It's a HIT!"
-    end
+    # puts "Your opponent fires on coordinate #{cpu_fire}!"
+        cpu_fire
+    # if @player.board.cells[cpu_fire].empty? == true
+    #   puts "It's a MISS!"
+    # else
+    #   puts "It's a HIT!"
+    # end
     @player.ships.each do |ship|
       if ship.sunk? == true
         puts "Your #{ship.name} has been sunk!"
@@ -167,10 +167,16 @@ class Game
     coord_to_fire_upon = y.sample + x.sample
     if @player.board.cells[coord_to_fire_upon].taken_fire == false
        @player.board.cells[coord_to_fire_upon].fire_upon
+       puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
+       if @player.board.cells[coord_to_fire_upon].empty? == true
+          puts "It's a MISS!"
+       else
+          puts "It's a HIT!"
+       end
     else
       cpu_fire
     end
-    coord_to_fire_upon
+    # #this is outputting a random coord, not the 
   end
 
   def player_fire
@@ -183,11 +189,17 @@ class Game
     elsif
       @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
       @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
+      puts "You fired on coordinate #{coord_to_fire_upon}"
+      if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
+        puts "It's a MISS!"
+      else
+        puts "It's a HIT!"
+      end
     else
       puts "You've already shot at that space. Try again."
       player_fire
     end
-    coord_to_fire_upon
+    
   end
 
   def cpu_turn
