@@ -5,6 +5,7 @@ class Computer
     @cpu_board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @ships = [@cruiser, @submarine]
   end
 
   def cruiser_coord_generator
@@ -44,6 +45,6 @@ class Computer
   end
 
   def defeat?
-    return true if @cruiser.sunk? == true && @submarine.sunk? == true
+    @ships.all? { |ship| ship.sunk? == true }
   end
 end
