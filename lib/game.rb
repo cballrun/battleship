@@ -166,22 +166,20 @@ class Game
     x = ["1", "2", "3", "4"]
     y = ["A", "B", "C", "D"]
     coord_to_fire_upon = y.sample + x.sample
-    if @player.board.cells[coord_to_fire_upon].taken_fire == false
-       @player.board.cells[coord_to_fire_upon].fire_upon
-       puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
-       if @player.board.cells[coord_to_fire_upon].empty? == true
-          puts "It's a MISS!"
-       else
-          puts "It's a HIT!"
-       end
-    else
-      cpu_fire
+      if @player.board.cells[coord_to_fire_upon].taken_fire == false
+         @player.board.cells[coord_to_fire_upon].fire_upon
+        puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
+        if @player.board.cells[coord_to_fire_upon].empty? == true
+            puts "It's a MISS!"
+        else
+            puts "It's a HIT!"
+        end
+      else
+        cpu_fire
     end
-    # #this is outputting a random coord, not the 
   end
 
   def player_fire
-
     coord_to_fire_upon = gets.chomp
 
     if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
@@ -191,21 +189,17 @@ class Game
       @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
       @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
       puts "You fired on coordinate #{coord_to_fire_upon}"
-      if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
-        puts "It's a MISS!"
-      else
-        puts "It's a HIT!"
-      end
+        if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
+          puts "It's a MISS!"
+        else
+          puts "It's a HIT!"
+        end
     else
       puts "You've already shot at that space. Try again."
       player_fire
     end
-    
   end
 
-  def cpu_turn
-    cpu_fire
 
-  end
 end
 
