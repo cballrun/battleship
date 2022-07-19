@@ -46,18 +46,18 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to eq(true)
   end
   it 'does cell render method' do
-    expect(@cell_1.render).to eq(".")
+    expect(@cell_1.render).to eq("🌊")
     @cell_1.fire_upon
-    expect(@cell_1.render).to eq("M")
+    expect(@cell_1.render).to eq("💢")
     @cell_2.place_ship(@cruiser)
-    expect(@cell_2.render).to eq(".")
-    expect(@cell_2.render(true)).to eq("S")
+    expect(@cell_2.render).to eq("🌊")
+    expect(@cell_2.render(true)).to eq("🚢")
     @cell_2.fire_upon
-    expect(@cell_2.render).to eq("H")
+    expect(@cell_2.render).to eq("💥")
     expect(@cruiser.sunk?).to eq(false)
     @cruiser.hit
     @cruiser.hit
     expect(@cruiser.sunk?).to eq(true)
-    expect(@cell_2.render).to eq("X")
+    expect(@cell_2.render).to eq(["🛶", "🏊", "🔥"].sample)
   end
 end
