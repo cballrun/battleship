@@ -185,12 +185,12 @@ end
 def player_fire
   coord_to_fire_upon = gets.chomp
 
-  if @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
-     @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
-  elsif 
-    puts "You've already shot at that space. Try again."
-    player_fire
+    if @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
+      @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
+    else 
+      puts "You've already shot at that space. Try again."
+      player_fire
+    end
   end
-end
 
 end
