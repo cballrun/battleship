@@ -7,6 +7,8 @@ class Game
   end
 
   def greeting
+    @computer.cruiser_coord_generator
+    @computer.sub_coord_generator
     puts
     puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
     puts "🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊"
@@ -97,7 +99,7 @@ class Game
       puts
       puts "Your opponent is placing their ships..."
       puts
-      #computer start placement method / Greeting
+      greeting
     else
       puts
       puts "Invalid input. Try again..."
@@ -180,6 +182,15 @@ def cpu_fire
   end
 end
 
+def player_fire
+  coord_to_fire_upon = gets.chomp
 
+  if @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
+     @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
+  elsif 
+    puts "You've already shot at that space. Try again."
+    player_fire
+  end
+end
 
 end
