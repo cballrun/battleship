@@ -132,33 +132,34 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    # puts "Your opponent fires on coordinate #{cpu_fire}!"
         cpu_fire
-    # if @player.board.cells[cpu_fire].empty? == true
-    #   puts "It's a MISS!"
-    # else
-    #   puts "It's a HIT!"
-    # end
-    @player.ships.each do |ship|
-      if ship.sunk? == true
-        puts "Your #{ship.name} has been sunk!"
-      end
-    end
-    @computer.ships.each do |ship|
-      if ship.sunk? == true
-        puts "You sunk their #{ship.name}!"
-      end
-    end
+
+        @player.ships.each do |ship|
+          if ship.sunk? == true
+            puts "Your #{ship.name} has been sunk!"
+          end
+        end
+        @computer.ships.each do |ship|
+          if ship.sunk? == true
+            puts "You sunk their #{ship.name}!"
+          end
+        end
+    
+     puts
+    puts "={ COMPUTER BOARD }="
+    puts
+    puts @computer.cpu_board.render
+    puts
+    puts
+    puts " ={ PLAYER BOARD }="
+    puts
+    puts @player.board.render(true)
     puts
     puts "Enter a coordinate to fire upon:"
     puts
-    player_fire
-    # if @computer.cpu_board.cells[player_fire].empty? == true
-    #   puts "It's a MISS!"
-    # else
-    #   puts "It's a HIT!"
-    # end
-    turn
+        player_fire
+      
+        turn
   end
 
   def cpu_fire
