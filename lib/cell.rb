@@ -31,12 +31,12 @@ class Cell
   def render(display = false)
     if empty? == true && fired_upon? == true
       "💢"
-    elsif display == true && empty? == false
-      "🚢"
     elsif empty? == false && ship.sunk? == true
-      "🛟"
+      "🛶"
     elsif empty? == false && fired_upon? == true
       "💥"
+    elsif display == true && empty? == false
+      "🚢"
     else
       "🌊"
     end
