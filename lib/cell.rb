@@ -32,7 +32,7 @@ class Cell
     if empty? == true && fired_upon? == true
       "💢"
     elsif empty? == false && ship.sunk? == true
-      "🛶"
+      ["🛶", "🏊", "🛟"].sample
     elsif empty? == false && fired_upon? == true
       "💥"
     elsif display == true && empty? == false
