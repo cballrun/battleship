@@ -133,7 +133,6 @@ class Game
     puts @player.board.render(true)
     puts
         cpu_fire
-
         @player.ships.each do |ship|
           if ship.sunk? == true
             puts "Your #{ship.name} has been sunk!"
@@ -144,8 +143,7 @@ class Game
             puts "You sunk their #{ship.name}!"
           end
         end
-    
-     puts
+    puts
     puts "={ COMPUTER BOARD }="
     puts
     puts @computer.cpu_board.render
@@ -157,9 +155,8 @@ class Game
     puts
     puts "Enter a coordinate to fire upon:"
     puts
-        player_fire
-      
-        turn
+    player_fire
+    turn
   end
 
   def cpu_fire

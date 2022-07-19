@@ -49,4 +49,8 @@ class Computer
   def add_ship(ship)
     @ships <<ship
   end
+
+  def defeat?
+    @ships.all? { |ship| ship.sunk? == true }
+  end
 end
