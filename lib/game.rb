@@ -153,10 +153,14 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    puts "Enter a coordinate to fire upon:"
+    puts "Enter a coordinate to fire upon, or press q to leave the game."
     puts
     player_fire
-    turn
+    if @computer.defeat? || @player.defeat? == true
+      game_over
+    else
+      turn
+    end
   end
 
   def cpu_fire
@@ -178,6 +182,11 @@ class Game
 
   def player_fire
     coord_to_fire_upon = gets.chomp
+    
+    if coord_to_fire_upon == "q"
+      puts "See you next time..."
+      exit!
+    end
 
     if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
       puts "That isn't on the board. Try again."
@@ -198,10 +207,10 @@ class Game
   end
 
   def game_over
-    if @computer.ships[0].sunk? == true && @computer.ships[1].sunk? == true
-      puts "Better luck next time!"
-    else
+    if @computer.defeat? == true
       puts "You sunk my battleship!"
+    else
+      puts "Better luck next time..."
     end
   end
 
