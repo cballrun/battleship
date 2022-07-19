@@ -158,8 +158,12 @@ class Game
     puts "Enter a coordinate to fire upon, or press q to leave the game."
     puts
         player_fire
-      
+      if @computer.defeat? || @player.defeat? == true
+        game_over
+      else
         turn
+      end
+        
   end
 
   def cpu_fire
@@ -206,10 +210,10 @@ class Game
   end
 
   def game_over
-    if @computer.ships[0].sunk? == true && @computer.ships[1].sunk? == true
-      puts "Better luck next time!"
-    else
+    if @computer.defeat? == true
       puts "You sunk my battleship!"
+    else
+      puts "Better luck next time..."
     end
   end
 
