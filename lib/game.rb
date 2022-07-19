@@ -119,7 +119,6 @@ class Game
     puts
     puts "     Enter p to play. Enter q to quit."
     puts
-    puts
   end
 
   def turn
@@ -133,75 +132,67 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    # computer fire control
+    puts "Your opponent fires on coordinate #{cpu_fire}!"
+    puts
+    if @player.board.cells[cpu_fire].empty? == true
+      puts "It's a MISS!"
+    else
+      puts "It's a HIT!"
+    end
+    @player.ships.each do |ship|
+      if ship.sunk? == true
+        puts "Your #{ship.name} has been sunk!"
+      end
+    end
+    @computer.ships.each do |ship|
+      if ship.sunk? == true
+        puts "You sunk their #{ship.name}!"
+      end
+    end
+    puts
+    puts "Enter a coordinate to fire upon:"
+    puts
+    player_fire
+    # if @computer.cpu_board.cells[player_fire].empty? == true
+    #   puts "It's a MISS!"
+    # else
+    #   puts "It's a HIT!"
+    # end
+    turn
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   def cpu_fire
-
     x = ["1", "2", "3", "4"]
     y = ["A", "B", "C", "D"]
     coord_to_fire_upon = y.sample + x.sample
-    
     if @player.board.cells[coord_to_fire_upon].taken_fire == false
        @player.board.cells[coord_to_fire_upon].fire_upon
     else
       cpu_fire
     end
+    coord_to_fire_upon
   end
 
   def player_fire
+
     coord_to_fire_upon = gets.chomp
 
-      if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
-        puts "That isn't on the board. Try again."
-        player_fire
-      elsif
-        @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
-        @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
-      
-      else 
-        puts "You've already shot at that space. Try again."
-        player_fire
-      end
+    if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
+      puts "That isn't on the board. Try again."
+      player_fire
+    elsif
+      @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
+      @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
+    else
+      puts "You've already shot at that space. Try again."
+      player_fire
     end
-  
+    coord_to_fire_upon
+  end
+
   def cpu_turn
     cpu_fire
 
   end
-
-
 end
+

@@ -31,4 +31,9 @@ class Player
       @board.place(submarine, player_input)
     end
   end
+
+  def player_fire_control(coordinate)
+
+
+  end
 end
