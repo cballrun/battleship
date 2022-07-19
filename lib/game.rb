@@ -206,7 +206,6 @@ class Game
     else
       puts "You sunk my battleship!"
     end
-    exit!
   end
 
 
