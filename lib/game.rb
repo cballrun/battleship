@@ -200,6 +200,15 @@ class Game
     end
   end
 
+  def game_over
+    if @computer.ships[0].sunk? == true && @computer.ships[1].sunk? == true
+      puts "Better luck next time!"
+    else
+      puts "You sunk my battleship!"
+    end
+    exit!
+  end
+
 
 end
 
