@@ -6,10 +6,6 @@ class Player
     @ships = []
   end
 
-  def add_ship(ship)
-    @ships << ship
-  end
-
   def player_cruiser_placement(coordinate1, coordinate2, coordinate3)
     cruiser = Ship.new("Cruiser", 3)
     add_ship(cruiser)
@@ -32,8 +28,11 @@ class Player
     end
   end
 
-  def player_fire_control(coordinate)
+  def add_ship(ship)
+    @ships << ship
+  end
 
-
+  def defeat?
+    @ships.all? { |ship| ship.sunk? == true }
   end
 end
