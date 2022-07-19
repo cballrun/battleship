@@ -133,4 +133,53 @@ class Game
     puts
     # computer fire control
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def cpu_fire
+
+  x = ["1", "2", "3", "4"]
+  y = ["A", "B", "C", "D"]
+  coord_to_fire_upon = y.sample + x.sample
+  
+  if @player.board.cells[coord_to_fire_upon].taken_fire == false
+     @player.board.cells[coord_to_fire_upon].fire_upon
+  else
+    cpu_fire
+  end
+end
+
+
+
 end
