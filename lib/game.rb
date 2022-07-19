@@ -145,7 +145,7 @@ class Game
           end
         end
     
-     puts
+    puts
     puts "={ COMPUTER BOARD }="
     puts
     puts @computer.cpu_board.render
@@ -155,7 +155,7 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-    puts "Enter a coordinate to fire upon:"
+    puts "Enter a coordinate to fire upon, or press q to leave the game."
     puts
         player_fire
       
@@ -181,6 +181,11 @@ class Game
 
   def player_fire
     coord_to_fire_upon = gets.chomp
+    
+    if coord_to_fire_upon == "q"
+      puts "See you next time..."
+      exit!
+    end
 
     if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
       puts "That isn't on the board. Try again."
