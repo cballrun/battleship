@@ -13,6 +13,8 @@ RSpec.describe Game do
     expect(@game).to be_a(Game)
   end
 
-  it 'receives invalid ship response from Player Class' do
+  it 'instantiates computer and player classes ' do
+    expect(@game.player).to be_a(Player)
+    expect(@game.computer).to be_a(Computer)
   end
 end

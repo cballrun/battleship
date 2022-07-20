@@ -52,7 +52,7 @@ class Game
       puts
       puts "Your Cruiser is placed."
       puts
-      submarine_placement_prompt
+    submarine_placement_prompt
     end
   end
 
@@ -62,7 +62,7 @@ class Game
     puts
     first_coordinate = gets.chomp
     puts
-    puts "Select your second coordinate:"
+    puts "Select your final coordinate:"
     puts
     second_coordinate = gets.chomp
     puts
@@ -76,7 +76,7 @@ class Game
       puts
       puts "Your Submarine is placed."
       puts
-      turn
+    turn
     end
   end
 
@@ -96,7 +96,7 @@ class Game
       puts
       puts "Invalid input. Try again..."
       puts
-      start
+    start
     end
   end
 
@@ -123,17 +123,17 @@ class Game
     puts
     puts @player.board.render(true)
     puts
-        cpu_fire
-        @player.ships.each do |ship|
-          if ship.sunk? == true
-            puts "Your #{ship.name} has been sunk!"
-          end
-        end
-        @computer.ships.each do |ship|
-          if ship.sunk? == true
-            puts "You sunk their #{ship.name}!"
-          end
-        end
+    cpu_fire
+    @player.ships.each do |ship|
+      if ship.sunk? == true
+        puts "Your #{ship.name} has been sunk!"
+      end
+    end
+    @computer.ships.each do |ship|
+      if ship.sunk? == true
+        puts "You sunk their #{ship.name}!"
+      end
+    end
     puts
     puts "={ COMPUTER BOARD }="
     puts
@@ -163,31 +163,29 @@ class Game
     x = ["1", "2", "3", "4"]
     y = ["A", "B", "C", "D"]
     coord_to_fire_upon = y.sample + x.sample
-      if @player.board.cells[coord_to_fire_upon].taken_fire == false
-         @player.board.cells[coord_to_fire_upon].fire_upon
-        puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
-        if @player.board.cells[coord_to_fire_upon].empty? == true
-            puts
-            puts "It's a MISS!"
-            puts
-        else
-            puts
-            puts "It's a HIT!"
-            puts
-        end
+    if @player.board.cells[coord_to_fire_upon].taken_fire == false
+      @player.board.cells[coord_to_fire_upon].fire_upon
+      puts "Your opponent fired on coordinate #{coord_to_fire_upon}"
+      if @player.board.cells[coord_to_fire_upon].empty? == true
+        puts
+        puts "It's a MISS!"
+        puts
       else
-        cpu_fire
+        puts
+        puts "It's a HIT!"
+        puts
+      end
+    else
+      cpu_fire
     end
   end
 
   def player_fire
     coord_to_fire_upon = gets.chomp
-
     if coord_to_fire_upon == "q"
       puts "See you next time..."
       exit!
     end
-
     if @computer.cpu_board.valid_coordinate?(coord_to_fire_upon) == false
       puts "That isn't on the board. Try again."
       player_fire
@@ -195,15 +193,15 @@ class Game
       @computer.cpu_board.cells[coord_to_fire_upon].taken_fire == false
       @computer.cpu_board.cells[coord_to_fire_upon].fire_upon
       puts "You fired on coordinate #{coord_to_fire_upon}"
-        if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
-          puts
-          puts "It's a MISS!"
-          puts
+      if @computer.cpu_board.cells[coord_to_fire_upon].empty? == true
+        puts
+        puts "It's a MISS!"
+        puts
       else
-          puts
-          puts "It's a HIT!"
-          puts
-        end
+        puts
+        puts "It's a HIT!"
+        puts
+      end
     else
       puts
       puts "You've already shot at that space. Try again."
