@@ -212,10 +212,28 @@ class Game
 
   def game_over
     if @computer.defeat? == true
+      puts "={ COMPUTER BOARD }="
+      puts
+      puts @computer.cpu_board.render
+      puts
+      puts
+      puts " ={ PLAYER BOARD }="
+      puts
+      puts @player.board.render(true)
+      puts
       puts
       puts "We have a winner! You sunk my battleship!"
       puts
-    else
+    else 
+      puts "={ COMPUTER BOARD }="
+      puts
+      puts @computer.cpu_board.render
+      puts
+      puts
+      puts " ={ PLAYER BOARD }="
+      puts
+      puts @player.board.render(true)
+      puts
       puts
       puts "You lose! Better luck next time..."
       puts
