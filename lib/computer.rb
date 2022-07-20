@@ -19,7 +19,6 @@ class Computer
     coord3 = y.sample + x.sample
     cpu_cruiser_coords << coord3
     cpu_cruiser_coords
-
     if @cpu_board.valid_placement?(@cruiser, cpu_cruiser_coords) == true
       @cpu_board.place(@cruiser, cpu_cruiser_coords)
     else
@@ -36,7 +35,6 @@ class Computer
     coord2 = y.sample + x.sample
     cpu_sub_coords << coord2
     cpu_sub_coords
-
     if @cpu_board.valid_placement?(@submarine, cpu_sub_coords) == true
       @cpu_board.place(@submarine, cpu_sub_coords)
     else

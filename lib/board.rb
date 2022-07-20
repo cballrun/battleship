@@ -60,13 +60,4 @@ class Board
     "   C" + " " +  @cells["C1"].render(display) + " " + @cells["C2"].render(display) + " " + @cells["C3"].render(display) + " " + @cells["C4"].render(display) + " \n" +
     "   D" + " " +  @cells["D1"].render(display) + " " + @cells["D2"].render(display) + " " + @cells["D3"].render(display) + " " + @cells["D4"].render(display) + " \n"
   end
-
-  # def row_renderer(row, display)
-  #   row_coordinates = @cells.keys.select { |key| key.include? row }
-  #   array = []
-  #   row_coordinates.each do |coordinate|
-  #     array << @cells[coordinate].render(display)
-  #     # require 'pry'; binding.pry
-  #   end
-  # end
 end

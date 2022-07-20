@@ -17,7 +17,7 @@ RSpec.describe Board do
   it 'creates cells hash' do
     expect(@board.cells.class).to eq(Hash)
     expect(@board.cells.count).to eq(16)
-    expect(@board.cells["A1"]).to be_a(Cell) ## we can change this later to test everything is a cell
+    expect(@board.cells["A1"]).to be_a(Cell)
   end
 
   it 'can tell if a coordinate is valid' do
@@ -69,8 +69,8 @@ RSpec.describe Board do
 
   it 'can render board' do
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
-    expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+    expect(@board.render).to eq("     1  2  3  4 \n   A 🌊 🌊 🌊 🌊 \n   B 🌊 🌊 🌊 🌊 \n   C 🌊 🌊 🌊 🌊 \n   D 🌊 🌊 🌊 🌊 \n")
+    expect(@board.render(true)).to eq("     1  2  3  4 \n   A 🚢 🚢 🚢 🌊 \n   B 🌊 🌊 🌊 🌊 \n   C 🌊 🌊 🌊 🌊 \n   D 🌊 🌊 🌊 🌊 \n")
   end
 end
 
