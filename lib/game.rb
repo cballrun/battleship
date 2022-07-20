@@ -144,14 +144,15 @@ class Game
     puts
     puts @player.board.render(true)
     puts
+        if @player.defeat? == true
+          game_over
+        end
     puts "Enter a coordinate to fire upon:"
     puts
     puts "...or press q to leave the game."
     puts
     player_fire
     if @computer.defeat? == true
-      game_over
-    elsif @player.defeat? == true
       game_over
     else
       turn
@@ -212,13 +213,14 @@ class Game
   def game_over
     if @computer.defeat? == true
       puts
-      puts "You sunk my battleship!"
+      puts "We have a winner! You sunk my battleship!"
       puts
     else
       puts
-      puts "Better luck next time..."
+      puts "You lose! Better luck next time..."
       puts
     end
+    start
   end
 end
 
