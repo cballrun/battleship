@@ -41,4 +41,4 @@ RSpec.describe Computer do
     expect(@computer.cruiser_coord_generator.length).to eq(3)
     expect(@computer.sub_coord_generator.length).to eq(2)
   end
- end
+end
