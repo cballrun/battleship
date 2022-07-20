@@ -26,7 +26,19 @@ RSpec.describe Computer do
     expect(@computer.ships[0].name).to eq("Cruiser")
     expect(@computer.ships[1].name).to eq("Submarine")
   end
- 
- 
 
-end
+  it 'has defeat condition' do
+    3.times do
+      @computer.ships[0].hit
+    end
+    2.times do
+      @computer.ships[1].hit
+    end
+    expect(@computer.defeat?).to eq(true)
+  end
+
+  it 'generates correct number of boarc coordinates per ship' do
+    expect(@computer.cruiser_coord_generator.length).to eq(3)
+    expect(@computer.sub_coord_generator.length).to eq(2)
+  end
+ end
