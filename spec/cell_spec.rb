@@ -58,6 +58,6 @@ RSpec.describe Cell do
     @cruiser.hit
     @cruiser.hit
     expect(@cruiser.sunk?).to eq(true)
-    expect(@cell_2.render).to eq(["🛶", "🏊", "🔥"].sample)
+    expect(@cell_2.render).to eq("🛶" || "🏊" || "🔥")
   end
 end

@@ -14,7 +14,6 @@ RSpec.describe Computer do
     expect(@computer).to be_a(Computer)
   end
 
-
   it 'insantiates an instance of board' do
     expect(@computer.cpu_board).to be_a(Board)
   end
@@ -27,8 +26,8 @@ RSpec.describe Computer do
     expect(@computer.ships[0].name).to eq("Cruiser")
     expect(@computer.ships[1].name).to eq("Submarine")
   end
-   
-   it 'has defeat condition' do
+
+  it 'has defeat condition' do
     3.times do
       @computer.ships[0].hit
     end
@@ -37,12 +36,9 @@ RSpec.describe Computer do
     end
     expect(@computer.defeat?).to eq(true)
   end
-  
-    it 'generates correct number of boarc coordinates per ship' do
+
+  it 'generates correct number of boarc coordinates per ship' do
     expect(@computer.cruiser_coord_generator.length).to eq(3)
     expect(@computer.sub_coord_generator.length).to eq(2)
   end
- 
-
-
-end
+ end
